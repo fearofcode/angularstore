@@ -1,0 +1,14 @@
+*.sqlite3
+bin/*
+include/*
+lib/*
+local/*
+*.iml
+.idea/*
+*.log
+.Python
+
+*.pyc
+node_modules
+dist
+.tmp
