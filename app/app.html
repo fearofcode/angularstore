@@ -3,16 +3,40 @@
     <head>
         <title>Sports Store</title>
         <script src="vendor/js/angular.js"></script>
+        <script src="vendor/js/angular-route.js"></script>
         <script src="vendor/js/underscore.js"></script>
         <link rel="stylesheet" href="vendor/css/bootstrap.css" />
         <link rel="stylesheet" href="vendor/css/bootstrap-theme.css" />
 
         <script>
-            angular.module("sportsStore", ["customFilters", "cart"]);
+            angular.module("sportsStore", ["customFilters", "cart", "ngRoute"])
+                    .config(function($routeProvider) {
+                        $routeProvider.when("/complete", {
+                            templateUrl: "js/views/thankYou.html"
+                        });
+
+                        $routeProvider.when("/placeOrder", {
+                            templateUrl: "js/views/placeOrder.html"
+                        });
+
+                        $routeProvider.when("/checkout", {
+                            templateUrl: "js/views/checkoutSummary.html"
+                        });
+
+                        $routeProvider.when("/products", {
+                            templateUrl: "js/views/productList.html"
+                        });
+
+                        $routeProvider.otherwise({
+                            templateUrl: "js/views/productList.html"
+                        });
+
+                    });
         </script>
 
         <script src="js/controllers/sportsStore.js"></script>
         <script src="js/controllers/productListControllers.js"></script>
+        <script src="js/controllers/checkoutControllers.js"></script>
         <script src="js/filters/customFilters.js"></script>
         <script src="js/components/cart/cart.js"></script>
     </head>
@@ -27,7 +51,7 @@
             Error. Products were not loaded. <a href="/app.html">Click here to try again</a>.
         </div>
 
-        <ng-include src="'js/views/productList.html'"></ng-include>
+        <ng-view />
 
     </body>
 </html>

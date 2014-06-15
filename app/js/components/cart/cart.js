@@ -28,8 +28,32 @@ angular.module("cart", [])
                 }
             },
 
+            total: function() {
+                var total = 0;
+
+                for(var i = 0; i < cartData.length; i++){
+                    total += cartData[i].price*cartData[i].count;
+                }
+
+                return total;
+            },
+
+            itemCount: function() {
+                var total = 0;
+
+                for(var i = 0; i < cartData.length; i++){
+                    total += cartData[i].count;
+                }
+
+                return total;
+            },
+
             getProducts: function() {
                 return cartData;
+            },
+
+            length: function() {
+                return cartData.length;
             }
         }
     })
@@ -38,27 +62,10 @@ angular.module("cart", [])
             restrict: "E",
             templateUrl: "js/components/cart/cartSummary.html",
             controller: function($scope) {
-                var cartData = cart.getProducts();
+                $scope.total = cart.total;
 
-                $scope.total = function() {
-                    var total = 0;
+                $scope.itemCount = cart.itemCount;
 
-                    for(var i = 0; i < cartData.length; i++){
-                        total += cartData[i].price*cartData[i].count;
-                    }
-
-                    return total;
-                };
-
-                $scope.itemCount = function() {
-                    var total = 0;
-
-                    for(var i = 0; i < cartData.length; i++){
-                        total += cartData[i].count;
-                    }
-
-                    return total;
-                }
             }
         }
     });
