@@ -48,6 +48,10 @@ angular.module("cart", [])
                 return total;
             },
 
+            empty: function() {
+                cartData = [];
+            },
+
             getProducts: function() {
                 return cartData;
             },
